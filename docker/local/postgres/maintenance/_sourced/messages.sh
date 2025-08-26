@@ -1,4 +1,4 @@
-#!/urs/bin/env bash
+#!/usr/bin/env bash
 
 message_newline(){
   echo
@@ -17,6 +17,20 @@ message_warning(){
 }
 
 message_error(){
- echo -e "\e[33mERROR\e[0m: ${@}"
+ echo -e "\e[31mERROR\e[0m: ${@}"
 }
+
+message_info(){
+ echo -e "\e[37mINFO\e[0m: ${@}"
+}
+
+message_suggestion(){
+ echo -e "\e[33mSUGGESTION\e[0m: ${@}"
+}
+
+message_success(){
+ echo -e "\e[32mSUCCESS\e[0m: ${@}"
+}
+
+
 
