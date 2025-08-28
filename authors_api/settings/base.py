@@ -30,6 +30,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "drf_yasg",
     "corsheaders",
+    "djcelery_email",
 ]
 
 LOCAL_APPS = [
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "authours_api.urls"
+ROOT_URLCONF = "authors_api.urls"
 
 TEMPLATES = [
     {
@@ -69,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "authours_api.wsgi.application"
+WSGI_APPLICATION = "authors_api.wsgi.application"
 
 
 # Database
@@ -148,6 +149,17 @@ CORS_URLS_REGEX = r"^api/.*$"
 AUTH_USER_MODEL = "users.User"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_RESULT_BACKEND_MAX_RETRIES = 10
+CELERY_TASK_SEND_SENT_EVENT = True
+
+if USE_TZ:
+    CELERY_TIMEZONE = TIME_ZONE
 
 LOGGING = {
     "version": 1,

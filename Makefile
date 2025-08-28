@@ -55,3 +55,18 @@ isort-diff:
 isort:
 	docker compose -f local.yml exec api isort . --skip venv --skip migrations
 
+backup:
+	docker compose -f local.yml exec postgres backup
+
+backups:
+	docker compose -f local.yml exec postgres backups
+
+restore:
+	docker compose -f local.yml exec postgres restore $(word 2,$(MAKECMDGOALS))
+
+backup-user:
+	docker compose -f local.yml exec postgres psql -U admin -d authors-live -c "CREATE ROLE IF NOT EXISTS backup_admin WITH LOGIN PASSWORD 'backup123';"
+
+
+
+
