@@ -17,3 +17,7 @@ redis==5.0.0
 celery==5.3.6
 flower==2.0.1
 django-celery-email==3.0.0
+django-allauth==65.11.1
+djangorestframework-simplejwt==5.5.1
+dj-rest-auth==7.0.1
+requests>=2.31.0
